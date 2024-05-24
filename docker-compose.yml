@@ -1,0 +1,47 @@
+version: '3'
+services:
+  todo:
+    build: 
+      context: ./backend
+      args:
+        - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+      
+    environment:
+      - NODE_ENV=development
+      - TOKEN_SECRET=secrettoken
+      - REFRESH_TOKEN_SECRET=refreshsecrettokentoken
+      - PORT=3000
+  
+  app:
+    build: 
+      context: ./frontend
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+  
+  db:
+    image: mysql:8.0.36-debian
+    networks:
+      - app-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=789456123
+      - MYSQL_DATABASE=tododb
+      - MYSQL_USER=alireza
+      - MYSQL_PASSWORD=12345
+    volumes:
+      - ./backend/database/init:/docker-entrypoint-initdb.d
+#       - mysql-db:/var/lib/mysql
+
+
+networks:
+  app-network:
+    driver: bridge
+
+
+# volumes:
+#   mysql-db:
