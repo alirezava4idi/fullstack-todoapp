@@ -1,0 +1,37 @@
+<div class="container">
+    <form [formGroup]="todoForm">
+        <div class="input">
+            <label for="name">Name</label>
+            <input type="text" placeholder="name" formControlName="todoName">
+            @if (todoForm.get('todoName')?.errors?.['required'] &&
+                todoForm.get('todoName')?.touched) {
+                <small>*Name is required</small>
+            }
+            @if ((todoForm.get('todoName')?.errors?.['minlength'] || todoForm.get('todoName')?.errors?.['maxlength']) &&
+                todoForm.get('todoName')?.touched) {
+                    <small>*Name must be between 3 and 10 charecters</small>
+            }
+            @if (todoForm.get('todoName')?.errors?.['pattern'] && todoForm.get('todoName')?.touched) {
+                <small>*Name should only include upper and lower case letters, numbers and underscore</small>
+            }
+            @if (isLoading) {
+                
+                <div class="btn-group">
+                    <app-loading class="loading"></app-loading>
+                </div>
+            }@else {
+                <div class="btn-group">
+                    <button (click)="onCreateTodoClicked()">Create</button>
+                    <button (click)="onCloseForm()">Cancel</button>
+                </div>
+
+                @if (errMessage != '') {
+                    <div class="error">
+                        {{ errMessage }}
+                    </div>
+                }
+
+            }
+        </div>
+    </form>
+</div>

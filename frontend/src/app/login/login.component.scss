@@ -1,0 +1,140 @@
+.container
+{
+    width: 100svw;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .form
+    {
+        width: 100%;
+        height: 100svh;
+        max-width: 500px;
+        max-height: 500px;
+        display: flex;
+        flex-direction: column;
+
+        header
+        {
+            div
+            {
+                text-align: center;
+                font-size: 1.4em;
+                font-weight: bolder;
+                letter-spacing: 1px;
+            }
+        }
+
+        .input-box
+        {
+            display: flex;
+            flex-direction: column;
+            margin: 1rem;
+            gap: .3em;
+            position: relative;
+
+            label
+            {
+                font-weight: bold;
+            }
+            
+            input
+            {
+                padding: .8em;
+                border-radius: .2em;
+                outline: none;
+                border: none;
+                position: relative;
+
+                &:focus
+                {
+                    background-color: plum;
+                }
+            }
+
+            input[type='text']::after
+            {
+                content: '';
+                position: absolute;
+                width: 200px;
+                height: 200px;
+                left: 0;
+                top: 0;
+                background-color: rgb(50, 228, 14);
+                
+
+                
+                
+            }
+
+            small
+            {
+                color: maroon;
+                font-weight: bold;
+                margin: .3em 0;
+            }
+        }
+
+        button
+        {
+            margin: 1rem;
+            padding: .8em;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            border-radius: .2em;
+            font-weight: bold;
+            background-color: coral;
+            color: white;
+            &:hover
+            {
+                background-color: rgb(248, 97, 43);
+            }
+
+            &:disabled
+            {
+                background-color: gray;
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    .err-message {
+        font-weight: bold;
+        font-style: italic;
+        color: maroon;
+        width: 100%;
+        margin: 1rem;
+    }
+
+}
+
+a{
+    color: white;
+}
+
+.loading::after
+{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    top: 30px;
+    border: 3px solid #aaa;
+    border-radius: 50%;
+    border-top: 3px solid #3498db;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

@@ -1,0 +1,55 @@
+
+.err
+{
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  background-color: red;
+  color: white;
+  padding: .5rem 1rem;
+  border-radius: 4px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  opacity: 1;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 3s;
+  animation: fadein 0.5s, fadeout 0.5s 3s;
+}
+
+
+@keyframes fadein {
+  from {
+      opacity: 0;
+  }
+
+  to {
+      opacity: 1;
+  }
+}
+@keyframes fadeout {
+  from {
+      opacity: 1;
+  }
+
+  to {
+      opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+      opacity: 0;
+  }
+
+  to {
+      opacity: 1;
+  }
+}
+@-webkit-keyframes fadeout {
+  from {
+      opacity: 1;
+  }
+
+  to {
+      opacity: 0;
+  }
+}

@@ -1,0 +1,143 @@
+header
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+
+    h3
+    {
+        color: navajowhite;
+    }
+    button
+    {
+        padding: .4em;
+        border: none;
+        outline: none;
+        margin-inline: .2em;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: burlywood;
+        color: navy;
+    }
+    .mobile-nav-btn
+    {
+        display: none;
+    }
+}
+
+main
+{
+    .container
+    {
+        display: flex;
+        flex-direction: row;
+        margin: 1em;
+        gap: 1em;
+        flex-wrap: wrap;
+        
+    }
+    .todo-card
+    {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        background-color: gray;
+        padding: 1em 2em;
+        footer:hover{
+            cursor: pointer;
+            opacity: .7;
+        }
+
+        h3{
+            display: flex;
+            justify-content: space-between;
+        }
+        button{
+            padding: .4em;
+            border: none;
+            outline: none;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: burlywood;
+            color: nav
+        }
+        .del-section
+        {
+            h5
+            {
+                text-align: center;
+            }
+        }
+        .btn-group
+        {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+.delete-modal
+{
+    height: 100svh;
+    width: 100svw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: #000000, $alpha: .3);
+
+    .del-container
+    {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        background-color: white;
+        color: #000000;
+        padding: 1.2em;
+        .btn-group
+        {
+            display: flex;
+            justify-content: space-between;
+
+            button
+            {
+                padding: .4em;
+                border: none;
+                outline: none;
+                font-weight: bold;
+                cursor: pointer;
+                background-color: burlywood;
+                color: nav
+            }
+        }
+    }
+}
+
+.error {
+    background-color: rgb(179, 36, 36);
+    color: white;
+    width: fit-content;
+    padding: .4em;
+    margin-left: 1em;
+    font-weight: 500;
+    font-style: italic;
+}
+.prompt
+{
+    text-align: center;
+    font-weight: 900;
+    font-style: italic;
+}
+
+@media only screen and (max-width: 350px) {
+    .btn-group
+    {
+        display: none;
+    }
+    .mobile-nav-btn
+    {
+        display: block !important;
+    }
+}

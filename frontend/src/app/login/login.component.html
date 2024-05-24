@@ -1,0 +1,44 @@
+<div class="container">
+    
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="OnFormSubmit()">
+        <header>
+            <div>Login</div>
+        </header>
+        <div class="input-box">
+            <label for="username">Username</label>
+            <input type="text" placeholder="Username" formControlName="username" >
+            @if (loginForm.get('username')?.errors?.['required'] && loginForm.get('username')?.touched) {
+                <small>*Username is required</small>
+            }
+            @if ((loginForm.get('username')?.errors?.['minlength']
+                || loginForm.get('username')?.errors?.['maxlength'])
+                && loginForm.get('username')?.touched)
+            {
+                <small>*Username must be between 3 and 10 charecters</small>
+            }
+
+        </div>
+        <div class="input-box">
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" formControlName="password">
+            @if (loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched) {
+                <small>*Password is required</small>
+            }
+            @if ((loginForm.get('password')?.errors?.['minlength']
+                || loginForm.get('password')?.errors?.['maxlength'])
+                && loginForm.get('password')?.touched)
+            {
+                <small>*Password must be between 8 and 20 charecters</small>
+            }
+        </div>
+        <div class="input-box">
+            <a routerLink = "/Signup" >Don't have an account? click here</a>
+        </div>
+        <button type="submit">{{ isLoading ? 'Loading...' : 'Submit'}}</button>
+        @if (error) {
+            <div class="err-message">{{ error }}</div>
+        }
+    </form>
+    
+</div>
+

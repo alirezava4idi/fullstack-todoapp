@@ -1,0 +1,64 @@
+<div class="container">
+    @if (errMessage) {
+        <app-err-toast [message]="errMessage" ></app-err-toast>
+    }
+    <form class="form" [formGroup]="signupForm" (ngSubmit)="OnFormSubmit()">
+        <header>
+            <div>Signup</div>
+        </header>
+        <div class="input-box">
+            <label for="username">Username</label>
+            <input placeholder="Username" formControlName="username">
+            @if (usernameLoading) {
+                <span class="loading"></span>
+            }
+            @if (signupForm.get('username')?.errors?.['pattern'] && signupForm.get('username')?.touched) {
+                <small>*Username can only contain english charecters</small>
+            }
+            @if (signupForm.get('username')?.errors?.['required'] && signupForm.get('username')?.touched) {
+                <small>*Username is required</small>
+            }
+            @if ((signupForm.get('username')?.errors?.['minlength'] || signupForm.get('username')?.errors?.['maxlength']) 
+                    && signupForm.get('username')?.touched) {
+                <small>*Username must be between 3 and 10 charecters</small>
+            }
+            @if (signupForm.get('username')?.errors?.['checkUsername']) {
+                <small>*Username already exsits</small>
+            }
+
+        </div>
+        <div class="input-box">
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" formControlName="password">
+            <small class="hint">Passwords should include lower and upper case letters, numbers and special charecters &#64;$!%*?&</small>
+            @if (signupForm.get('password')?.errors?.['required'] && signupForm.get('password')?.touched) {
+                <small>*Password is required</small>
+            }
+            @if (signupForm.get('password')?.errors?.['pattern'] && signupForm.get('password')?.touched) {
+                <small>*Password is not Strong</small>
+            }
+            @if ((signupForm.get('password')?.errors?.['minlength'] || signupForm.get('password')?.errors?.['maxlength']) 
+                    && signupForm.get('password')?.touched) {
+                <small>*Password must be between 8 and 20 charecters</small>
+            }
+        </div>
+        <div class="input-box">
+            <label for="password-confim">Confirm your password</label>
+            <input type="password" placeholder="Confirm Password" formControlName="passwordConfirm">
+            @if (signupForm.get('passwordConfirm')?.errors?.['required'] && signupForm.get('passwordConfirm')?.touched) {
+                <small>*Password Confirm is required</small>
+            }
+            @if (signupForm.errors?.['matchPassword']) {
+                <small>*The two Passwords are not the same</small>
+            }
+        </div>
+        <div class="input-box">
+            <a routerLink="/Login">Already have an account? click here</a>
+        </div>
+        <button 
+            type="submit" 
+            >
+            {{ isLoading === true ? 'Loading...' : 'Submit' }}
+        </button>
+    </form>
+</div>

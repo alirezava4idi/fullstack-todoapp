@@ -1,0 +1,51 @@
+<header>
+    <h3>{{ todoName }}</h3>
+    @if (isLoading) {
+        <div class="loading">
+            <app-loading></app-loading>
+        </div>
+    }
+    <div class="btn-group">
+        <button [routerLink]="['/']">Home</button>
+        <button (click)="onRefreshTasksClicked()">Refresh</button>
+    </div>
+</header>
+
+@if (errMsg != '') {
+    <div class="error">
+        {{ errMsg }}
+    </div>
+}
+<main>
+    <div class="container">
+        <form [formGroup]="taskForm" (ngSubmit)="onFormSubmit()">
+            <input type="text" placeholder="new Task" formControlName="taskValue">
+            <button type="submit">Create</button>
+        </form>
+        @if (taskForm.get('taskValue')?.errors?.['pattern'] && taskForm.get('taskValue')?.touched) {
+            <small>*Task can only contain english charecters and numbers and spaces</small>
+        }
+        @if (taskForm.get('taskValue')?.errors?.['required'] && taskForm.get('taskValue')?.touched) {
+            <small>*Task is required</small>
+        }
+        <ul>
+            
+            @for (task of tasks; track $index) {
+                <li [ngClass]="task.status == 1 ? 'done' : ''">
+                    <p>{{ task.value }}</p>
+                    <p>{{ task.status }}</p>
+                    <div class="btn-group">
+                        <button (click)="onDoneTaskClicked(task.status, task.uuid)">Done</button>
+                        <button (click)="onDeleteTaskClicked(task.uuid)">Delete</button>
+                    </div>
+                </li>
+            }
+            
+            @if (tasks.length == 0) {
+                <p class="prompt">There are no tasks here!</p>
+                
+            }
+            
+        </ul>
+    </div>
+</main>

@@ -1,0 +1,110 @@
+header
+{
+    // width: 100svh;
+    padding: 1em;
+    color: bisque;
+    display: flex;
+    justify-content: space-between;
+
+    .btn-group{
+        display: flex;
+        gap: .2em;
+    }
+}
+
+main
+{
+    display: flex;
+    justify-content: center;
+    .container
+    {
+        min-width: 200px;
+        form{
+            display: flex;
+            // width: 200px;
+            row-gap: .2em;
+            input[type="text"]
+            {
+                padding: .4em;
+            }
+        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1em;
+        flex-wrap: wrap;
+        ul
+        {
+            list-style: none;
+            width: 100%;
+            li
+            {
+                margin-bottom: 1rem;
+                max-width: 250px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: .5em;
+                border: 3px solid rgb(179, 36, 36);
+                padding: .5em;
+                p
+                {
+                    word-break: break-all;
+                    
+                }
+
+                .btn-group{
+                    display: flex;
+                    gap: .2em;
+                    button
+                    {
+                        padding: .2em;
+                    }
+                }
+            }
+            .prompt
+            {
+                text-align: center;
+                font-weight: 900;
+                font-style: italic;
+            }
+        }
+    }
+}
+
+small
+{
+    color: rgb(142, 13, 13);
+    font-weight: bold;
+    margin: .3em 0;
+}
+button
+{
+    padding: .4em;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: burlywood;
+    color: nav
+}
+
+.error {
+    background-color: rgb(179, 36, 36);
+    color: white;
+    width: fit-content;
+    padding: .4em;
+    margin-left: 1em;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.done
+{
+    background-color: greenyellow;
+    border: none !important;
+    color: black;
+
+}

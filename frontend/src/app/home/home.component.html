@@ -1,0 +1,56 @@
+
+<header>
+    <h3>Welcome</h3>
+    @if (isLoading) {
+        <div class="loading">
+            <app-loading></app-loading>
+        </div>
+    }
+    <div class="btn-group">
+        <button (click)="newModelClicked()">+ New Todo</button>
+        
+        <button (click)="onRefreshClicked()">Refresh</button>
+        @if (isLoggedIn) {
+            <button (click)="onLogoutClicked()">Logout</button>
+        }
+    </div>
+    <button class="mobile-nav-btn">OPEN</button>
+
+</header>
+
+@if (newTodoModal) {
+    <app-new-todo (CloseForm)="CloseCreateTodo()" (RefreshTodos)="onRefreshClicked()"></app-new-todo>
+}
+
+@if (errMsg != '') {
+    <div class="error">
+        {{ errMsg }}
+    </div>
+}
+
+<main>
+    <div class="container">
+        @if (todos.length == 0) {
+            <p class="prompt">There are no Todos here!</p>  
+        }
+        @for (todo of todos; track $index) {
+            <div class="todo-card"  >
+                <h3>{{ todo.name }}</h3>
+                <footer> Created at {{ todo.created_at }}</footer>
+                <button [routerLink]="['/Todo', todo.name, todo.uuid]">More...</button>
+                <button (click)="onDeleteClicked(todo.uuid)">Delete</button>
+            </div>
+        }
+    </div>
+</main>
+@if (isDeleteMode) {
+    <div class="delete-modal">
+        <div class="del-container">
+            <h4>Are you sure?</h4>
+            <div class="btn-group">
+                <button (click)="deleteTodoAns(true)">Yes</button>
+                <button (click)="deleteTodoAns(false)">No</button>
+            </div>
+        </div>
+    </div>
+}
